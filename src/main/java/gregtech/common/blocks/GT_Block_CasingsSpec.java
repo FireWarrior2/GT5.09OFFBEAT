@@ -7,41 +7,31 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.objects.GT_CopiedBlockTexture;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_LanguageManager;
-import gregtech.common.blocks.GT_Block_Casings_Abstract;
-import gregtech.common.blocks.GT_Material_Casings;
 import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_AirFilter;
-import net.minecraft.client.renderer.texture.IIconRegister;
-//import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_LargeTurbine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-/**
- * Created by danie_000 on 03.10.2016.
- */
-public class GT_Block_CasingsNH
-        extends GT_Block_Casings_Abstract {
+public class GT_Block_CasingsSpec extends GT_Block_Casings_Abstract {
+
     public static boolean mConnectedMachineTextures = true;
 
-    public GT_Block_CasingsNH() {
-        super(GT_Item_CasingsNH.class, "gt.blockcasingsNH", GT_Material_Casings.INSTANCE);
-        for (byte i = 0; i < 16; i = (byte) (i + 1)) {
-            Textures.BlockIcons.casingTexturePages[1][(i + 32)] = TextureFactory.of(this, i);
+    public GT_Block_CasingsSpec() {
+
+        super(GT_Item_CasingsSpec.class, "gt.blockcasingsSpec", GT_Material_Casings.INSTANCE);
+
+        for (int meta = 0; meta < 2; meta++) {
+            Textures.BlockIcons.casingTexturePages[1][(meta + 32)] = TextureFactory.of(this, meta);
         }
-        GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".0.name", "Air Filter Turbine Casing");//adding
+
+        GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".0.name", "Air Filter Turbine Casing");
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".1.name", "Air Filter Vent Casing");//adding
         
-        ItemList.Casing_AirFilter.set(new ItemStack(this, 1, 0));//adding
-        ItemList.Casing_AirFilter_Vent.set(new ItemStack(this, 1, 1));//adding
-    }
-
-    @Override
-    public void registerBlockIcons(IIconRegister aIconRegister) {
-        //super.registerBlockIcons(aIconRegister);
+        ItemList.Casing_AirFilter.set(new ItemStack(this, 1, 0));
+        ItemList.Casing_AirFilter_Vent.set(new ItemStack(this, 1, 1));
     }
 
     @Override
